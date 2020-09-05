@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Select, Grommet, Main, TextInput, Box, grommet, Text, Button} from "grommet";
-import {PowerCycle, Transaction} from "grommet-icons";
+import {PowerCycle} from "grommet-icons";
 
 function App() {
-    const [value, setValue] = React.useState('medium');
-
     return (
-      <Grommet themeMode={'light'} theme={grommet} full={true}>
+      <Grommet themeMode={'dark'} theme={grommet} full={true}>
           <Main
               pad="large"
               fill={'vertical'}
@@ -19,20 +17,20 @@ function App() {
                   <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
                       <Box gap={'medium'}>
                           <Select
-                              options={['small', 'medium', 'large']}
-                              value={value}
-                              onChange={({ option }: {option: string}) => null}
+                              options={['EUR', 'GBP', 'USD']}
+                              value={'EUR'}
+                              onChange={() => null }
                               size={'large'}
                           />
                           <Box>
-                              <Text size={'small'}>Your Balance</Text>
+                              <Text size={'small'}>Your Balance: 0 €</Text>
                           </Box>
                       </Box>
 
                       <TextInput
-                          placeholder="type here"
-                          value={value}
-                          onChange={event => null}
+                          style={{textAlign: 'right'}}
+                          value={''}
+                          onChange={() => null}
                           size={'large'}
                       />
 
@@ -40,19 +38,20 @@ function App() {
                   <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
                       <Box gap={'medium'}>
                           <Select
-                              options={['small', 'medium', 'large']}
-                              value={value}
-                              onChange={({ option }: {option: string}) => null}
+                              options={['EUR', 'GBP', 'USD']}
+                              value={'GBP'}
+                              onChange={() => null }
                               size={'large'}
                           />
                           <Box>
-                              <Text size={'small'}>Your Balance</Text>
+                              <Text size={'small'}>Your Balance: 10 £</Text>
                           </Box>
                       </Box>
+
                       <TextInput
-                          placeholder="type here"
-                          value={value}
-                          onChange={event => null}
+                          style={{textAlign: 'right'}}
+                          value={''}
+                          onChange={() => null}
                           size={'large'}
                       />
 
