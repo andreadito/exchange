@@ -12,58 +12,58 @@ function App() {
               fill={'vertical'}
               justify={'center'}
               align={'center'}
-              flex={'grow'}
               overflow={'auto'}
               gap={'xlarge'}
           >
+              <Box gap={'large'}>
+                  <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
+                      <Box gap={'medium'}>
+                          <Select
+                              options={['small', 'medium', 'large']}
+                              value={value}
+                              onChange={({ option }: {option: string}) => null}
+                              size={'large'}
+                          />
+                          <Box>
+                              <Text size={'small'}>Your Balance</Text>
+                          </Box>
+                      </Box>
 
-              <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
-                  <Box gap={'medium'}>
-                      <Select
-                          options={['small', 'medium', 'large']}
+                      <TextInput
+                          placeholder="type here"
                           value={value}
-                          onChange={({ option }: {option: string}) => null}
+                          onChange={event => null}
                           size={'large'}
                       />
-                      <Box>
-                          <Text>Your Balance</Text>
-                      </Box>
+
                   </Box>
-
-                  <TextInput
-                      placeholder="type here"
-                      value={value}
-                      onChange={event => null}
-                      size={'large'}
-                  />
-
-              </Box>
-              <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
-                  <Box gap={'medium'}>
-                      <Select
-                          options={['small', 'medium', 'large']}
+                  <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
+                      <Box gap={'medium'}>
+                          <Select
+                              options={['small', 'medium', 'large']}
+                              value={value}
+                              onChange={({ option }: {option: string}) => null}
+                              size={'large'}
+                          />
+                          <Box>
+                              <Text size={'small'}>Your Balance</Text>
+                          </Box>
+                      </Box>
+                      <TextInput
+                          placeholder="type here"
                           value={value}
-                          onChange={({ option }: {option: string}) => null}
+                          onChange={event => null}
                           size={'large'}
                       />
-                      <Box>
-                          <Text>Your Balance</Text>
-                      </Box>
-                  </Box>
-                  <TextInput
-                      placeholder="type here"
-                      value={value}
-                      onChange={event => null}
-                      size={'large'}
-                  />
 
+                  </Box>
               </Box>
-              <Box>
-                  <Button >
+              <Box direction={'row'} gap={'medium'} >
+                  <Button>
                       <PowerCycle size={'medium'} />
                   </Button>
+                  <Button size={'large'} primary label="Exchange" />
               </Box>
-              <Button size={'large'} primary label="Exchange" />
           </Main>
       </Grommet>
   );
