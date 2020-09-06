@@ -26,17 +26,15 @@ const db = firebase.firestore();
 
 export default async (req: NowRequest, res: NowResponse) => {
     const {
-        query: { id, walletId },
+        query: { id },
     } = req
 
     try {
         const userRef = db.collection(`users`).doc(id as string);
         const walletsRef = await userRef.collection('wallets');
-        const walletRef = await walletsRef.doc(walletId as string);
-        const wallet = await walletRef.get();
-
-        if (wallet.exists) {
-            const data = wallet.data()
+        const wallets = await walletsRef.get();
+        if(!wallets.empty) {
+            const data = wallets.docs.map(wallet => ({ id: wallet.id, data: wallet.data() }))
             res.json(data);
         } else {
             res.send({});
