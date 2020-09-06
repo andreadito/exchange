@@ -1,9 +1,8 @@
 import {NowRequest, NowResponse} from '@vercel/node';
-
 export default (req: NowRequest, res: NowResponse) => {
-    const { query } = req;
+    const {
+        query: { id },
+    } = req
 
-    console.log(query);
-
-    res.send(`RATE !`)
+    res.send(`Query WALLET id ${id}!`)
 }
