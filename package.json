@@ -17,6 +17,7 @@
     "node-fetch": "^2.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.7.2",
     "react-query": "^2.15.1",
     "react-scripts": "^3.4.3",
     "styled-components": "^5.2.0",
