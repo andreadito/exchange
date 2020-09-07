@@ -2,21 +2,11 @@ import React from 'react';
 import {Grommet, Main, Box, grommet, Text, Heading} from "grommet";
 import {useQuery} from "react-query";
 import Exchange from "./Exchange";
+import {queryWallets} from "../services/queries";
+
 
 function App() {
-
-    const { isLoading, error, data } = useQuery('wallets', () =>
-        fetch('api/wallets/Dtn53Ebo2ULFpHWUsTAp/').then(res =>
-            res.json()
-        )
-    )
-
-    /*const { isLoading, error, data } = useQuery('rate', () => {
-        fetch('api/rates?base=EUR&symbols=USD,GBP').then(res =>
-            res.json()
-        )
-    })*/
-
+    const { isLoading, error, data } = useQuery('wallets', queryWallets)
     return (
       <Grommet themeMode={'dark'} theme={grommet} full={true}>
           <Main
@@ -41,7 +31,6 @@ function App() {
                   <Box>
                       <Exchange wallets={data}/>
                   </Box>
-
               )}
           </Main>
       </Grommet>

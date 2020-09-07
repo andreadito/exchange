@@ -1,50 +1,62 @@
-import {Box, FormField, Select, Text, TextInput} from "grommet";
-import React, { Fragment } from "react";
+import React from "react";
+import {Box, Select, Text, TextInput} from "grommet";
 import {Wallet} from "../util/util";
 import {Controller} from "react-hook-form";
+import {ErrorMessage} from "@hookform/error-message";
+import {Control, FieldErrors} from "react-hook-form/dist/types/form";
 
 export interface ExchangeInputProps {
     name: string;
     label: string;
     wallets: Wallet[];
-    control: any;
+    control: Control;
+    errors: FieldErrors
 }
 
-export default function ExchangeInput ({name, label, wallets, control}: ExchangeInputProps) {
+export default function ExchangeInput ({name, label, wallets, control, errors}: ExchangeInputProps) {
     return(
-        <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
-            <Box width={'small'}>
+        <Box>
+            <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
                 <Controller control={control} render={({onChange, name, value}) => {
                     return (
-                        <Fragment>
+                        <Box width={'small'}>
                             <Select
                                 placeholder={label}
                                 name={name}
                                 options={wallets}
                                 labelKey={(wallet: Wallet) => `${wallet.data.currency}` }
-                                size={'large'}
+                                size={'medium'}
                                 value={value}
                                 onChange={({ value }) => {onChange(value)}}
                             />
                             { value && value.data && (<Text style={{marginTop: 10}} size={'small'}>Balance: {value.data.balance}</Text>) }
-                        </Fragment>
+                        </Box>
                 )}} name={`${name}_wallet`}/>
-            </Box>
-            <FormField name={`${name}_value`} >
-                <Controller name={`${name}_value`} control={control} render={({onChange, name}) => {
+                <Controller rules={{
+                        min: {
+                            value: 0.5,
+                            message: 'Should be greater that 0.5'
+                        },
+                        required: true
+                    }} name={`${name}_value`} control={control} render={({onChange, name, value}) => {
                     return(
                         <TextInput
                             name={name}
                             inputMode={"numeric"}
                             style={{textAlign: 'right'}}
-                            size={'large'}
+                            size={'medium'}
+                            value={value}
                             onChange={onChange}
                             placeholder={"0"}
                         />
                     )
                 }}/>
-
-            </FormField>
+            </Box>
+            <ErrorMessage
+                errors={errors}
+                name={`${name}_value`}
+                render={({ message }) => (<Text alignSelf={'end'} size={'xsmall'}>{message}</Text>)}
+            />
         </Box>
     )
 }
