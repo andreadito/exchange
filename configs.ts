@@ -2,7 +2,7 @@ export const accountKey = {
     "type": "service_account",
     "project_id": "exchange-57496",
     "private_key_id": process.env.FIREBASE_private_key_id,
-    "private_key": process.env.FIREBASE_private_key,
+    "private_key": process.env.FIREBASE_private_key && process.env.FIREBASE_private_key.replace(/\\n/g, '\n'),
     "client_email": "firebase-adminsdk-miu5u@exchange-57496.iam.gserviceaccount.com",
     "client_id": process.env.FIREBASE_client_id,
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
