@@ -26,11 +26,11 @@ export default function ExchangeInput ({name, label, wallets, control}: Exchange
                                 value={value}
                                 onChange={({ value }) => {onChange(value)}}
                             />
-                            { value && value.data && (<Text size={'small'}>Balance: {value.data.balance}</Text>) }
+                            { value && value.data && (<Text style={{marginTop: 10}} size={'small'}>Balance: {value.data.balance}</Text>) }
                         </Fragment>
                 )}} name={`${name}_wallet`}/>
             </Box>
-            <FormField name={`${name}_value`}>
+            <FormField name={`${name}_value`} >
                 <Controller name={`${name}_value`} control={control} render={({onChange, name}) => {
                     return(
                         <TextInput
