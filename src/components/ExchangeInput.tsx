@@ -13,9 +13,10 @@ export interface ExchangeInputProps {
     control: Control;
     errors: FieldErrors;
     rate?: number;
+    readonly?: boolean
 }
 
-export default function ExchangeInput ({name, label, wallets, control, errors, isExceeding, rate = 1}: ExchangeInputProps) {
+export default function ExchangeInput ({name, label, wallets, control, errors, isExceeding, rate = 1, readonly}: ExchangeInputProps) {
     return(
         <Box>
             <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
@@ -44,19 +45,18 @@ export default function ExchangeInput ({name, label, wallets, control, errors, i
                             value: 0.5,
                             message: 'Should be greater that 0.5'
                         },
-                        required: true,
+                        required: !readonly,
                     }} name={`${name}_value`} control={control} render={({onChange, name, value}) => {
                     return(
                         <TextInput
                             name={name}
-                            type={'number'}
-                            step={0.10}
                             inputMode={"numeric"}
                             size={'medium'}
                             value={value * rate}
                             onChange={onChange}
                             style={{textAlign: 'right'}}
                             placeholder={"0"}
+                            readOnly={readonly}
                         />
                     )
                 }}/>
