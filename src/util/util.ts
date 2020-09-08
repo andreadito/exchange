@@ -12,3 +12,8 @@ export interface Wallet {
     id: string,
     data: WalletData
 }
+
+export interface Rate {
+    symbol: string;
+    value: string;
+}

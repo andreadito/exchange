@@ -24,11 +24,12 @@ export default async (req: NowRequest, res: NowResponse) => {
             const data = wallets.docs.map(wallet => ({ id: wallet.id, data: wallet.data() }))
             res.json(data);
         } else {
-            res.send({});
+            res.status(400);
+            res.send({ error: 'not found' });
         }
 
     } catch (error) {
         res.status(400);
-        res.send({error});
+        res.send({ error });
     }
 }
