@@ -15,7 +15,7 @@ export interface ExchangeInputProps {
     rate?: number;
 }
 
-export default function ExchangeInput ({name, label, wallets, control, errors, isExceeding}: ExchangeInputProps) {
+export default function ExchangeInput ({name, label, wallets, control, errors, isExceeding, rate = 1}: ExchangeInputProps) {
     return(
         <Box>
             <Box gap={'small'} fill={'horizontal'} direction={'row'} alignContent={'between'} >
@@ -29,7 +29,7 @@ export default function ExchangeInput ({name, label, wallets, control, errors, i
                                 labelKey={(wallet: Wallet) => `${wallet.data.currency}` }
                                 size={'medium'}
                                 value={value}
-                                onChange={onChange}
+                                onChange={({value}) => onChange(value)}
                             />
                             { value && value.data && (<Text
                                 color={isExceeding ? 'status-critical' :'status-ok'}
@@ -53,7 +53,7 @@ export default function ExchangeInput ({name, label, wallets, control, errors, i
                             step={0.10}
                             inputMode={"numeric"}
                             size={'medium'}
-                            value={value}
+                            value={value * rate}
                             onChange={onChange}
                             style={{textAlign: 'right'}}
                             placeholder={"0"}

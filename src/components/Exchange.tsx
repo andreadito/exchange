@@ -1,4 +1,4 @@
-import {Box, Button, Form} from "grommet";
+import {Box, Button, Form, Heading} from "grommet";
 import {PowerCycle} from "grommet-icons";
 import React, {useEffect, useState} from "react";
 import ExchangeInput from "./ExchangeInput";
@@ -31,28 +31,30 @@ export default function Exchange({ wallets }: ExchangeProps) {
 
     const [base, setBase] = useState(wallets[0].data.currency);
     const [symbol, setSymbol] = useState(wallets[1].data.currency);
+    const [rate, setRate] = useState(1);
 
-    const { data } = useRate(base, symbol);
+    const { data: rateInfo } = useRate(base, symbol);
 
-    if (data) {
-        console.log(data.data.rates);
-    }
-
-    const { from_wallet, from_value } = watch();
+    const { from_wallet, from_value, to_wallet } = watch();
 
     const onSubmitForm = (data: Inputs) => console.log(data);
     const onErrorForm = (errors: any) => console.log(errors);
-    const onChangeForm = (data: any) => {
 
-        if(data.from_value > 0.5) {
-            setValue('to_value', parseFloat(data.from_value) * 1.2)
+    useEffect(()=> {
+        if(from_value > 0.5) {
+            setValue('to_value', from_value)
         } else {
             setValue('to_value', 0)
         }
 
-        setBase(data.from_wallet.data.currency);
-        setSymbol(data.to_wallet.data.currency);
-    }
+        setBase(from_wallet.data.currency);
+        setSymbol(to_wallet.data.currency);
+
+        if (rateInfo && rateInfo.data.rates[to_wallet.data.currency]) {
+            setRate(rateInfo.data.rates[to_wallet.data.currency]);
+        }
+    }, [from_value, from_wallet.data.currency, rateInfo, setValue, to_wallet.data.currency])
+
     const swapFields = () => {
         const {from_value, from_wallet, to_value, to_wallet} = getValues();
 
@@ -62,11 +64,12 @@ export default function Exchange({ wallets }: ExchangeProps) {
         setValue('to_value', from_value);
     }
 
-    const isExceeding = parseFloat(from_wallet.data.balance.toString()) < parseFloat(from_value.toString());
+    const isExceeding = from_wallet.data.balance < from_value;
 
     return (
         <Box animation={"fadeIn"}>
-            <Form onSubmit={handleSubmit(onSubmitForm, onErrorForm)} onChange={onChangeForm}>
+            <Heading>Rate: {rate}</Heading>
+            <Form onSubmit={handleSubmit(onSubmitForm, onErrorForm)}>
                 <Box gap={'large'}>
                     <ExchangeInput
                         name={'from'}
@@ -82,6 +85,7 @@ export default function Exchange({ wallets }: ExchangeProps) {
                         wallets={wallets}
                         control={control}
                         errors={errors}
+                        rate={rate}
                     />
                     <Box direction={'row'} gap={'medium'} justify={"center"}>
                         <Button onClick={swapFields}>
