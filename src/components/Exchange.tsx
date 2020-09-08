@@ -94,7 +94,7 @@ export default function Exchange({ wallets }: ExchangeProps) {
                         <Button onClick={swapFields}>
                             <PowerCycle size={'medium'} />
                         </Button>
-                        <Button disabled={!formState.isValid || isExceeding} size={'large'} primary label="Exchange" type={'submit'} />
+                        <Button disabled={Object.values(errors).length > 0 || isExceeding} size={'large'} primary label="Exchange" type={'submit'} />
                     </Box>
                 </Box>
             </Form>
