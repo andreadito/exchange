@@ -41,7 +41,7 @@ export default function Exchange({ wallets }: ExchangeProps) {
     const onSubmitForm = (data: Inputs) => console.log(data);
     const onErrorForm = (errors: any) => console.log(errors);
 
-    useEffect(()=> {
+    useEffect(() => {
         if(from_value > 0.5) {
             setValue('to_value', from_value)
         } else {
