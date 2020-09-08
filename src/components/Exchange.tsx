@@ -19,7 +19,7 @@ type Inputs = {
 
 export default function Exchange({ wallets }: ExchangeProps) {
 
-    const { handleSubmit, control, errors, formState, setValue, getValues, watch} = useForm<Inputs>({
+    const { handleSubmit, control, errors, setValue, getValues, watch} = useForm<Inputs>({
         defaultValues:{
             from_value: 0,
             from_wallet: wallets[0],
