@@ -35,7 +35,7 @@ function App() {
                     )}
                 </Main>
             </Grommet>
-            <ReactQueryDevtools initialIsOpen />
+            <ReactQueryDevtools />
         </Fragment>
   );
 }

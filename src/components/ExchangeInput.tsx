@@ -29,7 +29,7 @@ export default function ExchangeInput ({name, label, wallets, control, errors, i
                                 labelKey={(wallet: Wallet) => `${wallet.data.currency}` }
                                 size={'medium'}
                                 value={value}
-                                onChange={({ value }) => {onChange(value)}}
+                                onChange={onChange}
                             />
                             { value && value.data && (<Text
                                 color={isExceeding ? 'status-critical' :'status-ok'}
