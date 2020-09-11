@@ -77,7 +77,7 @@ exports[`Exchange Input should render correctly 1`] = `
           }
         }
       >
-        Balance: 1090
+        Balance: 1090.00
       </span>
     </div>
     <div
