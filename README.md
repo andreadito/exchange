@@ -13,6 +13,10 @@ Production URL: (https://exchange-ruddy.vercel.app/)
 ## Requirements: 
 `npm i -g vercel`
 
+https://github.com/vercel/vercel/tree/master/packages/now-cli
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
