@@ -20,7 +20,7 @@
     "node-fetch": "^2.6.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-hook-form": "^6.8.0",
+    "react-hook-form": "^6.9.2",
     "react-query": "^2.15.4",
     "react-query-devtools": "^2.4.7",
     "react-scripts": "^3.4.3",
