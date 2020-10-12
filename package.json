@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-react-jsx": "^7.10.4",
-    "@testing-library/react-hooks": "^3.4.1",
+    "@testing-library/react-hooks": "^3.4.2",
     "@vercel/node": "^1.8.4",
     "babel-preset-react-app": "^9.1.2",
     "msw": "^0.21.2",
