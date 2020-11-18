@@ -54,7 +54,7 @@
     "@babel/plugin-transform-react-jsx": "^7.12.5",
     "@testing-library/react-hooks": "^3.4.2",
     "@vercel/node": "^1.8.4",
-    "babel-preset-react-app": "^9.1.2",
+    "babel-preset-react-app": "^10.0.0",
     "msw": "^0.21.2",
     "mutationobserver-shim": "^0.3.7"
   }
